@@ -1,0 +1,40 @@
+//点云的消息类型完全未知
+
+./include/frame/global_defination/global_defination.h.in//文件作用和内容未知
+
+#include <pcl_conservations/pcl_conversations.h>//cloud_subscriber.hpp中出现的头文件，未找到
+
+pcl::fromROSMsg(*cloud_msg_ptr, *(cloud_data.cloud_ptr))//cloud_subscriber.cpp中出现的函数，具体实现未知
+
+ Eigen::Matrix4d matrix = transform_matrix.cast<float>();//velocity_data.cpp中出现，未知transform_matrix是什么
+
+geometry_msgs/TwistStamped.h//未知的消息类型，出现在velocity_subscriber.hpp中
+
+using POINT = pcl::PointXYZ;//在cloud_data.hpp文件中出现，将命名空间中单个名字注入到当前作用域的机制，使得在当前作用域下访问另一个作用域下的成员时无需使用限定符
+
+int status = 0;int service =0;//gnss_data.hpp中出现，作用未知
+
+lookupTransformbase_frame_id_,child_frame_id_, ros::Time(0), transform)//tf_listener.cpp中出现的函数
+tf::StampedTransform//该变量也是指出现在tf.h,不在tf_listener.h中
+
+//distortion_adjust.cpp中标注****的位置
+
+#include <frame/optimizeMap.h>//back_end_node.cpp,由srv文件夹内相应srv文件生成
+
+//g2o_graph_optimize.cpp部分函数直接复制，未手动复现
+
+BackEndFlow::UpdateBackEnd(){odometry_inited = false;}//没看懂这里的初始化的意义
+
+Viewer::JointLocalMap//每次都需要重新构建滑窗，可改进
+
+pose_to_optimize_//viewer.hpp文件中，该变量作用不明
+******************************************************
+OdometrySubscriber//viewer_flow.cpp中的订阅，来自于上一条
+transformed_odom_buff_//viewer_flow.cpp中的变量，来自于上一个变量
+current_transformed_odom_//viewer_flow.cpp中的变量，来自于上一个变量
+transformed_data//viewer.cpp中的变量，来自于上一个变量
+*******************************************************
+Viewer::OptimizeKeyFrames//viewer.cpp中的函数，while循环中的if判断好像不对
+******************************************************
+g2o.cmake文件跳过
+rviz文件暂时跳过

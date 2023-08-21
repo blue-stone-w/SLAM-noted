@@ -1,0 +1,5 @@
+find_package(PCL 1.7 REQUIRED)
+list(REMOVE_ITEM PCL_LIBRARIES "vtkproj4")
+
+include_directories(${GLOG_INCLUDE_DIRS})
+list(APPEND ALL_TARGET_LIBRARIES ${GLOG_LIBRARIES})

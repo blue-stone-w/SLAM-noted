@@ -1,0 +1,30 @@
+<launch>
+
+  <param name="scan_line" type="int" value="16" />
+
+  <!-- if 1, do mapping 10 Hz, if 2, do mapping 5 Hz. Suggest to use 1, it will adjust frequence automaticlly -->
+  <param name="mapping_skip_frame" type="int" value="2" />
+
+  <!-- remove too closed points -->
+  <param name="minimum_range" type="double" value="0.3" />
+
+  <param name="mapping_line_resolution" type="double" value="0.2" />
+  <param name="mapping_plane_resolution" type="double" value="0.4" />
+
+  <!-- 打开节点： 包名 可执行文件名 节点名 将节点的标准输出打印至终端屏幕，默认输出为日志文档 -->
+  <!-- 可执行文件不是代码源文件，可执行文件名通常为“a+源文件名” -->
+  <!-- roslaunch 不能保证 node 的启动顺序，因此 launch 文件中所有的 node 都应该对启动顺序有鲁棒性-->
+  <node pkg="aloam_velodyne" type="ascanRegistration" name="ascanRegistration" output="screen" />
+  <node pkg="aloam_velodyne" type="alaserOdometry" name="alaserOdometry" output="screen" />
+  <node pkg="aloam_velodyne" type="alaserMapping" name="alaserMapping" output="screen" />
+
+  <!-- argument是另外一个概念，类似于launch文件内部的局部变量，仅限于launch文件使用，便于launch文件的重构，和ROS节点内部的实现没有关系。 -->
+  <!--arg：定义变量-->
+  <arg name="rviz" default="true" />
+  <!--group：设定分组-->
+  <group if="$(arg rviz)">
+    <!--调用argument：用于降低进程的执行顺序(通过nice) 包名 可执行文件名 节点名 args(参数 argument名）；-->
+    <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find aloam_velodyne)/rviz_cfg/aloam_velodyne.rviz" />
+  </group>
+
+</launch>

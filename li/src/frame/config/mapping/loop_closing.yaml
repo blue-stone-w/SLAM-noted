@@ -1,0 +1,28 @@
+data_path: ./  #数据存放路径
+
+registration_method: NDT  #选择点云匹配方法，目前支持：NDT
+#匹配时应使用scan-to-map方式以提高精度
+#map是以历史帧为中心、前后各选取extend_frame_num个关键帧，然后拼接而成
+extend_frame_num: 5
+loop_step: 5 #防止检测过于频繁，每隔loop_step个关键帧检测一次闭环
+detect_area: 10.0 #检测区域，只有两帧距离小于这个值，才做闭环匹配
+diff_num: 100 #两帧之间的关键帧超出这个数值再做检测，因为闭环过小不能起到良好的优化效果
+fitness_score_limit: 0.2 #匹配误差小于这个值说明该匹配有效
+
+# 闭环检测对实时性要求不高。不滤波（no filter），则点云稠密，匹配精度高；滤波，可以减少计算量，加快计算
+map_filter: voxel_filter #滑窗地图点云滤波方法，目前支持：voxel_filter和no_filter
+scan_filter: voxel_filter #当前帧点云滤波方法，目前支持:voxel_filter和no_filter
+
+#各配置选项对应参数
+##匹配相关参数
+NDT:
+  res : 1.0
+  step_size : 0.1
+  trans_eps : 0.01
+  max_iter : 30
+##滤波相关参数
+voxel_filter:
+  map:
+    leaf_size: [0.3, 0.3, 0.3]
+  scan:
+    leaf_size: [0.3, 0.3, 0.3]
